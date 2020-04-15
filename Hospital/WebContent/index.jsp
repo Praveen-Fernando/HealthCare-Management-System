@@ -22,7 +22,7 @@
 				response.sendRedirect("http://localhost:8080/Doctor/Doctor_Insert.jsp");
 			}else{
 				response.sendRedirect("index.jsp");
-				System.out.println("Login failed................");
+				System.out.println("Login failed......");
 			}
 			
 		}
