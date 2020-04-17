@@ -31,16 +31,13 @@ public class Hospital {
 			preparedStmt.execute();
 			con.close();
 			output = "Inserted successfully";
-			System.out.println("Inserted successfully.......................................");
 		} catch (Exception e) {
 			output = "Error while inserting the Hospitals.";
-			System.out.println("Error while inserting the Hospitals........." + e);
 			System.err.println(e.getMessage());
 		}
 		return output;
 	}
 
-	//
 	public String readHospital() {
 		String output = "";
 		try {
@@ -88,8 +85,7 @@ public class Hospital {
 	}
 
 	public String updateHopital(String ID, String hName, String contactNo, String address, String email) {
-		System.out.println(
-				"Update method...............................................................................");
+		
 		String output = "";
 		try {
 			Connection con = obj.connect();
@@ -109,7 +105,7 @@ public class Hospital {
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			output = "Updated successfully";
+			output = "Hospital Details Updated successfully";
 		} catch (Exception e) {
 			output = "Error while updating the Hospital.";
 			System.err.println(e.getMessage());
@@ -134,7 +130,7 @@ public class Hospital {
 			con.close();
 			output = " Hospital Deleted successfully";
 		} catch (Exception e) {
-			output = "Error while deleting the Hospital.";
+			output = "Doctors Are Registered to this Hospital.";
 			System.err.println(e.getMessage());
 		}
 		return output;
