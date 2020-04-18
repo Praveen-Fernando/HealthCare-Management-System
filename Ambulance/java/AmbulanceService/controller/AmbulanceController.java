@@ -27,13 +27,13 @@ public class AmbulanceController {
 			 {return "Error while connecting to the database for inserting."; } 
 			
 			ps = connection.prepareStatement(
-					"INSERT INTO ambulance_service(Amb_ID,Amb_No,Amb_Cont,Driver_Name,Ride_Date) "+" VALUES (?,?,?,?,?)");
+					"INSERT INTO ambulance_service(`Amb_No`,`Amb_Cont`,`Driver_Name`,`Ride_Date`) "+" VALUES (?,?,?,?)");
 
-			ps.setInt(1,0);
-			ps.setString(2,ambulance.getAmb_No());
-			ps.setInt(3,ambulance.getAmb_Cont());
-			ps.setString(4,ambulance.getDriver_Name());
-			ps.setDate(5,ambulance.getRide_Date());
+	
+			ps.setString(1,ambulance.getAmb_No());
+			ps.setString(2,ambulance.getAmb_Cont());
+			ps.setString(3,ambulance.getDriver_Name());
+			ps.setDate(4,ambulance.getRide_Date());
 	
 		
 
@@ -71,7 +71,7 @@ public class AmbulanceController {
 				Ambulance ambulance = new Ambulance();
 				ambulance.setAmb_ID(rs.getInt("Amb_ID"));
 				ambulance.setAmb_No(rs.getString("Amb_No"));
-				ambulance.setAmb_Cont(rs.getInt("Amb_Cont"));
+				ambulance.setAmb_Cont(rs.getString("Amb_Cont"));
 				ambulance.setDriver_Name(rs.getString("Driver_Name"));
 				ambulance.setRide_Date(rs.getDate("Ride_Date"));
 
@@ -99,7 +99,7 @@ public class AmbulanceController {
 
 			// binding values
 			ps.setString(1,ambulance.getAmb_No());
-			ps.setInt(2,ambulance.getAmb_Cont());
+			ps.setString(2,ambulance.getAmb_Cont());
 			ps.setString(3,ambulance.getDriver_Name());
 			ps.setDate(4,ambulance.getRide_Date());
 			ps.setInt(5,ambulance.getAmb_ID());

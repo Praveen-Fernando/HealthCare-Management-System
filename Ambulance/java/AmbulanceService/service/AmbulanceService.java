@@ -41,7 +41,7 @@ public class AmbulanceService {
 
 		Ambulance ambulance = new Ambulance();
 		ambulance.setAmb_No(Amb_No);
-		ambulance.setAmb_Cont(Integer.parseInt(Amb_Cont));
+		ambulance.setAmb_Cont(Amb_Cont);
 		ambulance.setDriver_Name(Driver_Name);
 		ambulance.setRide_Date(Date.valueOf(Ride_Date));
 		
@@ -66,7 +66,7 @@ public class AmbulanceService {
 		Ambulance ambulance = new Ambulance();
 		ambulance.setAmb_ID(Integer.parseInt(Amb_ID));
 		ambulance.setAmb_No(Amb_No);
-		ambulance.setAmb_Cont(Integer.parseInt(Amb_Cont));
+		ambulance.setAmb_Cont(Amb_Cont);
 		ambulance.setDriver_Name(Driver_Name);
 		ambulance.setRide_Date(Date.valueOf(Ride_Date));
 	
