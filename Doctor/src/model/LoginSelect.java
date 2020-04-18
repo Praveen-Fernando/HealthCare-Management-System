@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import database.dbconnect;
+import util.dbconnect;
 
 public class LoginSelect {
 	
