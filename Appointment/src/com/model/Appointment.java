@@ -23,7 +23,7 @@ public class Appointment {
 			output = "<table border=\"1\">" + "<th>Doctor Name</th>" + "<th>Availability</th>";
 
 			// Not set yet
-			String query = "Select D_Name from doctor where Availability = '1'";
+			String query = "Select D_Name from doctor";
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(query);
 			
@@ -43,8 +43,6 @@ public class Appointment {
 			
 		} catch (Exception e) {
 			// TODO: handle exception
-			output = "Error while inserting the Hospitals.";
-
 			//System.out.println("Error while connecting to the database " + e);
 
 			//System.err.println(e.getMessage());
@@ -53,4 +51,17 @@ public class Appointment {
 
 	}
 
+	/*
+	public String setAppointment() {
+		
+	}
+	
+	public String updateAppointment() {
+		
+	}
+	
+	public String calcelAppointment() {
+		
+	}
+	*/
 }

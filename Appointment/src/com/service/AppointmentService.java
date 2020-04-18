@@ -1,4 +1,4 @@
-package com.resource;
+package com.service;
 
 
 import javax.ws.rs.GET;
@@ -8,17 +8,16 @@ import javax.ws.rs.core.MediaType;
 
 import com.model.Appointment;
 
-@Path("/Appointments")
-public class AppointmentResource {
+@Path("/Appointmets")
+public class AppointmentService {
+
 	Appointment appointment = new Appointment();
 	
 	@GET
 	@Path("/")
 	@Produces(MediaType.TEXT_HTML)
-	public String getAvilableDocs() {
+	public String getDocs() {
 		return appointment.getAvilableDocs();
+		//return "asdf";
 	}
-	
-	
-	
 }
