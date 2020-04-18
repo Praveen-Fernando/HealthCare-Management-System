@@ -22,28 +22,33 @@ public class Appointment {
 				return "Error while connecting to the database";
 			}
 
-			output = "<table border=\"1\">" + "<th>Doctor Name</th>" + "<th>Availability</th>";
+			output = "<table class=\"table\" >" + "<thead>" + "<th>Doctor Name</th>" + "<th>Availability</th>"
+					+ "</thead>";
 
 			String query = "select D_Name from doctor  where Availability = '1'";
-			
+
 			// Not set yet String query = "Select D_Name from doctor"; Statement
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(query);
 
 			while (resultSet.next()) {
-				String docName = resultSet.getString("D_Name"); //
+				String docId = resultSet.getString("Doctor_ID");
+				String docName = resultSet.getString("D_Name");
+				String docSpec = resultSet.getString("D_Type");
+				String docHosp = resultSet.getString("Hospital_ID");
 				String availability = resultSet.getString("Availability");
 
 				// Add into the html table
 
-				output += "<tr><td><input id=\"docName\"name=\"docName\"type=\"hidden\" value=\"" + docName + "\">"
-						+ docName + "</td>";
+				output += "<tbody><tr><td><input id=\"hidDocIdUpdate\"name=\"hidDocIdUpdate\"type=\"hidden\" value=\""
+						+ docId + "\">" + docName + "</td>";
 
 				// buttons
 
-				output += "<td><form method=\"post\" action=\"displayAvailableDocs.jsp\">"
-						+ "<button class=\"btn btn-success\" name = \"availabilityBtn\" type=\"submit\"></from>"
-						+ "</td></tr>";
+				output += "<td><form method=\"post\" action=\"appointments.jsp\">"
+						+ "<input class=\"btn btn-success\" name = \"availabilityBtn\" type=\"submit\" value=\"Available\"></from>"
+						+ "</td></tr></tbody>" + "<input name>";
+
 			}
 
 			connection.close();
@@ -69,8 +74,9 @@ public class Appointment {
 				return "Error while connecting to the database";
 			}
 
-			output = "<table border=\"1\">" + "<th>Appointment Id</th>" + "<th>Appointment Id</th>" + "<th>User Id</th>"
-					+ "<th>Doctor Id</th>" + "<th>Doctor Specialisation</th>" + "<th>Hospital Id</th>" + "</th>";
+			output = "<table class=\"table\" border=\"1\">" + "<thead>" + "<tr><th>Appointment Id</th>"
+					+ "<th>User Id</th>" + "<th>Doctor Id</th>" + "<th>Doctor Specialisation</th>"
+					+ "<th>Hospital Id</th>" + "</th></tr>" + "</thead>";
 
 			// Not set yet
 			String query = "Select * from appointments";
@@ -86,7 +92,7 @@ public class Appointment {
 				String date = resultSet.getString("Date");
 
 				// Add into the html table
-				output += "<tr><td><input id=\"readAppo\"name=\"readAppo\"type=\"hidden\" value=\""
+				output += "<tbody><tr><td><input id=\"readAppoIdUpdate\"name=\"readAppoIdUpdate\"type=\"hidden\" value=\""
 
 						+ appoId + "\">" + appoId + "</td>";
 
@@ -104,13 +110,13 @@ public class Appointment {
 
 				output += "<td><input name=\"btnUpdate\" type=\"submit\"value=\"Update\" class=\"btn btn-warning btnUpdate\"></td>"
 
-						+ "<td><form method=\"post\" action=\"bookAppointment.jsp\">"
+						+ "<td><form method=\"post\" action=\"appointments.jsp\">"
 
 						+ "<input name=\"btnRemove\" type=\"submit\" value=\"Remove\"class=\"btn btn-danger\">"
 
-						+ "<input name=\"\" type=\"hidden\" value=\"" + appoId + "\">"
+						+ "<input name=\"hidAppoIdDelete\" type=\"hidden\" value=\"" + appoId + "\">"
 
-						+ "</form></td></tr>";
+						+ "</form></td></tr><tbody>";
 			}
 
 			connection.close();
