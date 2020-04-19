@@ -42,20 +42,30 @@
 
 	<form id="loginform" name="loginform" method="post" action="index.jsp">
 		UserName: <input id="userName" name="userName" type="text"
-			class="form-control form-control-sm"> <br> 
-	   Password: <input id="password" name="password" type="text"
-			class="form-control form-control-sm"> <br>
-		 <input id="btnLogin" name="btnLogin" type="submit" value="Login"
-			class="btn btn-primary" onclick="myFunction()"> 
-		<input type="hidden" id="loginVal" name="loginVal" value="">
+			class="form-control form-control-sm"> <br> Password: <input
+			id="password" name="password" type="text"
+			class="form-control form-control-sm"> <br> <input
+			id="btnLogin" name="btnLogin" type="submit" value="Login"
+			class="btn btn-primary" onclick="myFunction()"> <input
+			type="hidden" id="loginVal" name="loginVal" value="">
 	</form>
 
 
-<script>
-function myFunction() {
-  alert("Server Access Granted!");
-}
-</script>
+	<script>
+    function myFunction() {
+      if(loginObj.loginVal(s1, s2) == 1)
+       {
+	      alert("Hospital Server Access Granted !");
+       }
+      else if(loginObj.loginVal(s1, s2) == 2)
+       {
+	      alert("Doctor Server Access Granted!");
+       }
+      else{
+    	  alert("Server Access Denied!");
+       }
+    }
+    </script>
 
 </body>
 </html>
