@@ -27,13 +27,14 @@ public class AmbulanceController {
 			 {return "Error while connecting to the database for inserting."; } 
 			
 			ps = connection.prepareStatement(
-					"INSERT INTO ambulance_service(`Amb_No`,`Amb_Cont`,`Driver_Name`,`Ride_Date`) "+" VALUES (?,?,?,?)");
+					"INSERT INTO ambulance_service(`H_ID`,`Admin_Id`,`Amb_No`,`Amb_Cont`,`Driver_Name`,`Ride_Date`) "+" VALUES (?,?,?,?,?,?)");
 
-	
-			ps.setString(1,ambulance.getAmb_No());
-			ps.setInt(2,ambulance.getAmb_Cont());
-			ps.setString(3,ambulance.getDriver_Name());
-			ps.setDate(4,ambulance.getRide_Date());
+			ps.setInt(1,ambulance.getH_ID());
+			ps.setInt(2,ambulance.getAdmin_Id());
+			ps.setString(3,ambulance.getAmb_No());
+			ps.setInt(4,ambulance.getAmb_Cont());
+			ps.setString(5,ambulance.getDriver_Name());
+			ps.setDate(6,ambulance.getRide_Date());
 	
 		
 
@@ -70,6 +71,8 @@ public class AmbulanceController {
 			while (rs.next()) {
 				Ambulance ambulance = new Ambulance();
 				ambulance.setAmb_ID(rs.getInt("Amb_ID"));
+				ambulance.setH_ID(rs.getInt("H_ID"));
+				ambulance.setAdmin_Id(rs.getInt("Admin_Id"));
 				ambulance.setAmb_No(rs.getString("Amb_No"));
 				ambulance.setAmb_Cont(rs.getInt("Amb_Cont"));
 				ambulance.setDriver_Name(rs.getString("Driver_Name"));
@@ -95,14 +98,16 @@ public class AmbulanceController {
 			}
 			// create a prepared statement
 			ps = connection.prepareStatement(
-					"UPDATE ambulance_service SET Amb_No=?,Amb_Cont=?,Driver_Name=?,Ride_Date=? WHERE Amb_ID=?");
+					"UPDATE ambulance_service SET H_ID=?,Admin_Id=?,Amb_No=?,Amb_Cont=?,Driver_Name=?,Ride_Date=? WHERE Amb_ID=?");
 
 			// binding values
-			ps.setString(1,ambulance.getAmb_No());
-			ps.setInt(2,ambulance.getAmb_Cont());
-			ps.setString(3,ambulance.getDriver_Name());
-			ps.setDate(4,ambulance.getRide_Date());
-			ps.setInt(5,ambulance.getAmb_ID());
+			ps.setInt(1,ambulance.getH_ID());
+			ps.setInt(2,ambulance.getAdmin_Id());
+			ps.setString(3,ambulance.getAmb_No());
+			ps.setInt(4,ambulance.getAmb_Cont());
+			ps.setString(5,ambulance.getDriver_Name());
+			ps.setDate(6,ambulance.getRide_Date());
+			ps.setInt(7,ambulance.getAmb_ID());
 			
 			
 			// execute the statement

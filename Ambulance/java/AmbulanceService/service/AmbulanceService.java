@@ -37,9 +37,11 @@ public class AmbulanceService {
 	@Path("/insert")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String insertAmbulance(@FormParam("Amb_No") String Amb_No,@FormParam("Amb_Cont") String Amb_Cont,@FormParam("Driver_Name") String Driver_Name,@FormParam("Ride_Date") String Ride_Date)throws ParseException{
+	public String insertAmbulance(@FormParam("H_ID") String H_ID,@FormParam("Admin_Id") String Admin_Id,@FormParam("Amb_No") String Amb_No,@FormParam("Amb_Cont") String Amb_Cont,@FormParam("Driver_Name") String Driver_Name,@FormParam("Ride_Date") String Ride_Date)throws ParseException{
 
 		Ambulance ambulance = new Ambulance();
+		ambulance.setH_ID(Integer.parseInt(H_ID));
+		ambulance.setAdmin_Id(Integer.parseInt(Admin_Id));
 		ambulance.setAmb_No(Amb_No);
 		ambulance.setAmb_Cont(Integer.parseInt(Amb_Cont));
 		ambulance.setDriver_Name(Driver_Name);
@@ -61,10 +63,12 @@ public class AmbulanceService {
 	@Path("/update")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String updateAmbulance(@FormParam("Amb_ID") String Amb_ID,@FormParam("Amb_No") String Amb_No,@FormParam("Amb_Cont") String Amb_Cont,@FormParam("Driver_Name") String Driver_Name,@FormParam("Ride_Date") String Ride_Date) throws ParseException {
+	public String updateAmbulance(@FormParam("Amb_ID") String Amb_ID,@FormParam("H_ID") String H_ID,@FormParam("Admin_Id") String Admin_Id,@FormParam("Amb_No") String Amb_No,@FormParam("Amb_Cont") String Amb_Cont,@FormParam("Driver_Name") String Driver_Name,@FormParam("Ride_Date") String Ride_Date) throws ParseException {
 
 		Ambulance ambulance = new Ambulance();
 		ambulance.setAmb_ID(Integer.parseInt(Amb_ID));
+		ambulance.setH_ID(Integer.parseInt(H_ID));
+		ambulance.setAdmin_Id(Integer.parseInt(Admin_Id));
 		ambulance.setAmb_No(Amb_No);
 		ambulance.setAmb_Cont(Integer.parseInt(Amb_Cont));
 		ambulance.setDriver_Name(Driver_Name);
