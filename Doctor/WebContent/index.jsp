@@ -42,10 +42,9 @@
  
  
 <form id="loginform" name="loginform" method="post" action="index.jsp">
-		UserName: 
-		<input id="userName" name="userName" type="text" class="form-control form-control-sm"> <br>
-	    Password:
-	    <input id="password" name="password" type="text" class="form-control form-control-sm"> <br> 
+		UserName: <input id="userName" name="userName" type="text" class="form-control form-control-sm"> <br>
+	    Password: <input id="password" name="password" type="text" class="form-control form-control-sm"> <br> 
+	    
 		<input id="btnLogin" name="btnLogin" type="submit" value="Login" class="btn btn-primary">
 		<input type="hidden" id="loginVal" name="loginVal" value="" > 		
 </form>

@@ -6,10 +6,9 @@
 	<% 
 		//Save---------------------------------
 		if (request.getParameter("D_Name") != null) {
-			Doctor
-			d1 = new Doctor();
-			String
-			stsMsg = "";
+			Doctor d1 = new Doctor();
+			String stsMsg = "";
+			
 			//Insert------------------------------
 			if (request.getParameter("hidDoctorIDSave") == "") {
 				stsMsg = d1.insertDoctors(request.getParameter("D_Name"),
