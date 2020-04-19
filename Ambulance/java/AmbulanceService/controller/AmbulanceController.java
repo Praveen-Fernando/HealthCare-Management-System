@@ -31,7 +31,7 @@ public class AmbulanceController {
 
 	
 			ps.setString(1,ambulance.getAmb_No());
-			ps.setString(2,ambulance.getAmb_Cont());
+			ps.setInt(2,ambulance.getAmb_Cont());
 			ps.setString(3,ambulance.getDriver_Name());
 			ps.setDate(4,ambulance.getRide_Date());
 	
@@ -71,7 +71,7 @@ public class AmbulanceController {
 				Ambulance ambulance = new Ambulance();
 				ambulance.setAmb_ID(rs.getInt("Amb_ID"));
 				ambulance.setAmb_No(rs.getString("Amb_No"));
-				ambulance.setAmb_Cont(rs.getString("Amb_Cont"));
+				ambulance.setAmb_Cont(rs.getInt("Amb_Cont"));
 				ambulance.setDriver_Name(rs.getString("Driver_Name"));
 				ambulance.setRide_Date(rs.getDate("Ride_Date"));
 
@@ -99,7 +99,7 @@ public class AmbulanceController {
 
 			// binding values
 			ps.setString(1,ambulance.getAmb_No());
-			ps.setString(2,ambulance.getAmb_Cont());
+			ps.setInt(2,ambulance.getAmb_Cont());
 			ps.setString(3,ambulance.getDriver_Name());
 			ps.setDate(4,ambulance.getRide_Date());
 			ps.setInt(5,ambulance.getAmb_ID());

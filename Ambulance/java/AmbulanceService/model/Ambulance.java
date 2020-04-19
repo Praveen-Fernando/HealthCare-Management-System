@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Ambulance {
 	private int Amb_ID;
 	private String Amb_No;
-	private String Amb_Cont;
+	private int Amb_Cont;
 	private String Driver_Name;
 	private Date Ride_Date;
 
@@ -25,10 +25,10 @@ public class Ambulance {
 	public void setAmb_No(String amb_No) {
 		Amb_No = amb_No;
 	}
-	public String getAmb_Cont() {
+	public int getAmb_Cont() {
 		return Amb_Cont;
 	}
-	public void setAmb_Cont(String amb_Cont) {
+	public void setAmb_Cont(int amb_Cont) {
 		Amb_Cont = amb_Cont;
 	}
 	public String getDriver_Name() {
