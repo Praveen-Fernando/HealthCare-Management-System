@@ -27,14 +27,13 @@ public class AmbulanceController {
 			 {return "Error while connecting to the database for inserting."; } 
 			
 			ps = connection.prepareStatement(
-					"INSERT INTO  ambulance_service(Amb_ID,Amb_No,Amb_Cont,Driver_Name,Ride_Date) "
-							+ "	VALUES (?,?,?,?,?)");
+					"INSERT INTO ambulance_service(`Amb_No`,`Amb_Cont`,`Driver_Name`,`Ride_Date`) "+" VALUES (?,?,?,?)");
 
-			ps.setInt(1, 0);
-			ps.setString(2, ambulance.getAmb_No());
-			ps.setInt(3, ambulance.getAmb_Cont());
-			ps.setString(4, ambulance.getDriver_Name());
-			ps.setDate(5, ambulance.getRide_Date());
+	
+			ps.setString(1,ambulance.getAmb_No());
+			ps.setInt(2,ambulance.getAmb_Cont());
+			ps.setString(3,ambulance.getDriver_Name());
+			ps.setDate(4,ambulance.getRide_Date());
 	
 		
 
@@ -87,7 +86,7 @@ public class AmbulanceController {
 		return ambulances;
 	}
 
-	public String updateAmbulance(Ambulance Ambulance) {
+	public String updateAmbulance(Ambulance ambulance) {
 		String output = "";
 		try {
 			connection = DBConnection.getConnection();
@@ -99,11 +98,11 @@ public class AmbulanceController {
 					"UPDATE ambulance_service SET Amb_No=?,Amb_Cont=?,Driver_Name=?,Ride_Date=? WHERE Amb_ID=?");
 
 			// binding values
-			ps.setInt(1, Ambulance.getAmb_Cont());
-			ps.setString(2, Ambulance.getDriver_Name());
-			ps.setString(3,Ambulance.getDriver_Name());
-			ps.setDate(4, Ambulance.getRide_Date());
-			ps.setInt(5, Ambulance.getAmb_ID());
+			ps.setString(1,ambulance.getAmb_No());
+			ps.setInt(2,ambulance.getAmb_Cont());
+			ps.setString(3,ambulance.getDriver_Name());
+			ps.setDate(4,ambulance.getRide_Date());
+			ps.setInt(5,ambulance.getAmb_ID());
 			
 			
 			// execute the statement
@@ -111,7 +110,7 @@ public class AmbulanceController {
 			connection.close();
 			output = "Updated successfully";
 		} catch (Exception e) {
-			output = "Error while updating the lab test.";
+			output = "Error while updating the Ambulance.";
 			System.err.println(e.getMessage());
 		}
 		return output;
@@ -129,7 +128,7 @@ public class AmbulanceController {
 			connection = DBConnection.getConnection();
 			ps = connection.prepareStatement("delete from ambulance_service where Amb_ID=?");
 			// binding values
-			ps.setInt(1, Integer.parseInt(Amb_ID));
+			ps.setInt(1,Integer.parseInt(Amb_ID));
 			// execute the statement
 			ps.execute();
 			connection.close();

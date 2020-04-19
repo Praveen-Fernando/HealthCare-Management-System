@@ -1,6 +1,10 @@
 package AmbulanceService.model;
 
 import java.sql.Date;
+
+import javax.xml.bind.annotation.XmlRootElement;
+@XmlRootElement
+
 public class Ambulance {
 	private int Amb_ID;
 	private String Amb_No;
@@ -39,6 +43,7 @@ public class Ambulance {
 	public void setRide_Date(Date ride_Date) {
 		Ride_Date = ride_Date;
 	}
+	
 		
 	}
 	
