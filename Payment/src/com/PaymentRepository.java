@@ -12,7 +12,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 
-@Path("onlinepayment")
+@Path("payment")
 
 public class PaymentRepository {
 	@GET
@@ -34,7 +34,7 @@ public class PaymentRepository {
 	}
 
 	@POST
-	@Path("/savepayment")
+	@Path("/insetpayment")
 	public String inerstPayment(PaymentDetails p) throws SQLException
 	{
 		PaymentResource handler = new PaymentResource();
