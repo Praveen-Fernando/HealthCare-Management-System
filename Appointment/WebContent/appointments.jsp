@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="com.model.Appointment"%>
+<%@ page import="com.util.DBConnect"%>
+<%@ page import="java.sql.*"%>
 
-<%	
+<%
+session.setAttribute("statusMsg", "");
+System.out.println("Trying to proocess....");
 
 	if (request.getParameter("userId") != null) {
 
 		Appointment appointment = new Appointment();
 
 		String stsMsg = "";
-
-		
 
 		//Insert--------------------------
 
@@ -20,9 +22,11 @@
 
 					request.getParameter("docId"), request
 
-							.getParameter("hospId"), request
+							.getParameter("hospId"),
+					request
 
-							.getParameter("docSpec"), request
+							.getParameter("docSpec"),
+					request
 
 							.getParameter("date"));
 
@@ -30,13 +34,16 @@
 
 		{
 
-			stsMsg = appointment.updateAppointment(request.getParameter("userId"),
-
+			stsMsg = appointment.updateAppointment(
+					request.getParameter("userId"), 
+					
 					request.getParameter("docId"), request
 
-							.getParameter("hospId"), request
+							.getParameter("hospId"),
+					request
 
-							.getParameter("docSpec"), request
+							.getParameter("docSpec"),
+					request
 
 							.getParameter("date"));
 
@@ -52,14 +59,26 @@
 
 		Appointment appointment = new Appointment();
 
-		String stsMsg = appointment.calcelAppointment(
-				request.getParameter("hidAppoIdDelete"));
+		String stsMsg = appointment.calcelAppointment(request.getParameter("hidAppoIdDelete"));
 
 		session.setAttribute("statusMsg", stsMsg);
 
 	}
+%>
 
-%>	
+<%
+/*
+	
+
+	DBConnect connect = new DBConnect();
+	Connection connection = connect.connect();
+	Statement statement = connection.createStatement();
+	
+	String query = "select H_ID from hospital";
+	ResultSet resultSet = statement.executeQuery(query);
+	
+	*/
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,16 +102,17 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
-<script src="Components/main.js"></script>
+<script src="Components/appo.js"></script>
 
 </head>
 
 <body>
 
-<h1>Appointments</h1>
+	<h1>Appointments</h1>
 
 	<div class="container-fluid">
-		<form id="booingForm" name="booingForm" method="post" action="appointments.jsp">
+		<form id="booingForm" name="booingForm" method="post"
+			action="appointments.jsp">
 			<div class="form-group">
 				<label for="userId">Patient ID</label> <input type="number"
 					class="form-control" id="userId" required="required">
@@ -102,8 +122,18 @@
 					class="form-control" id="docId" required="required">
 			</div>
 			<div class="form-group">
-				<label for="docSpec">Doctor Specialization</label> <input
-					type="text" class="form-control" id="docSpec" required="required">
+				<label for="docSpec">Doctor Specialization</label> 
+				<input type="text"
+					class="form-control" id="docSpec" name="docSpec" required="required">
+				<!-- <select
+					class="form-control" id="docSpec" required="required">
+
+					<% //while(resultSet.next()) {%>
+					
+					<option value="<%//resultSet.getString(1);%>"></option>
+					<%//} %>
+				</select> -->
+				
 			</div>
 			<div class="form-group">
 				<label for="hospId">Hospital ID</label> <input type="number"
@@ -113,18 +143,18 @@
 				<label for="date">date</label> <input type="date"
 					class="form-control" id="date" required="required">
 			</div>
-			<button class="btn btn-primary" name="bookingBtn" id="bookingBtn">Book
-				Now</button>
-				<input type="hidden" id="hidAppoIdSave" name="hidAppoIdSave" value="">
+			<input class="btn btn-primary" type="button" name="bookingBtn"
+				id="bookingBtn" value="Book Now"> <input type="hidden"
+				id="hidAppoIdSave" name="hidAppoIdSave" value="">
 		</form>
 	</div>
-	
-	<div id="alterSuccess" class="alter alter-success">
+
+	<div id="alertSuccess" class="alert alert-success">
 		<%
 			out.print(session.getAttribute("statusMsg"));
 		%>
 	</div>
-	<div id="alterError" class="alter alter-danger"></div>
+	<div id="alertError" class="alert alert-danger"></div>
 
 	<div class="container-fluid">
 		<%

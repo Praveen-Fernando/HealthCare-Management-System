@@ -10,11 +10,11 @@ $(document).ready(function() {
 
 $(document).on("click", "#bookingBtn", function(event) {
 	$("#alertSuccess").text("");
-	$("#alertSuccess").hide("");
+	$("#alertSuccess").hide();
 	$("#alertError").text("");
-	$("#alertError").hide("");
+	$("#alertError").hide();
 
-	var status = validateAppoForm();
+	var status = validateAppForm();
 	if (systus != true) {
 		$("alertError").text(status);
 		$("alertError").show();
@@ -31,9 +31,8 @@ $(document).on(
 		".btnUpdate",
 		function(event) {
 
-			$("#hidAppoIdSave").val(
-					$(this).closest("tr").find('#hidReadAppoIdUpdate').val());
-
+			$("#hidAppoIdSave").val($(this).closest("tr").find('#hidReadAppoIdUpdate').val());
+			
 			$("#userId").val($(this).closest("tr").find('td:eq(0)').text());
 
 			$("#docId").val($(this).closest("tr").find('td:eq(1)').text());
@@ -46,7 +45,7 @@ $(document).on(
 
 		});
 
-function validateappointentForm() {
+function validateAppForm() {
 
 	// CODE
 

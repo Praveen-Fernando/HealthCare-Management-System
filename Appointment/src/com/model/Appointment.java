@@ -12,6 +12,55 @@ public class Appointment {
 
 	DBConnect connect = new DBConnect();
 
+	public String setAppointment(String userId, String docId, String hospId, String docSpec, String date) {
+		String output = "";
+
+		try {
+
+			Connection connection = connect.connect();
+
+			if (connection == null) {
+
+				return "Error while connecting to the database for inserting.";
+
+			} 
+			// create a prepared statement
+
+			String query = "insert into appointments(`User_Id`,`Doctor_Id`,`Doctor_spec`,`Hosp_Id`)"
+
+					+ "values (?, ?, ?, ?)";
+
+			PreparedStatement preparedStmt = connection.prepareStatement(query);
+
+			preparedStmt.setInt(1, Integer.parseInt(userId));
+
+			preparedStmt.setInt(2, Integer.parseInt(docId));
+
+			preparedStmt.setString(3, docSpec);
+
+			preparedStmt.setInt(4, Integer.parseInt(hospId));
+
+			preparedStmt.setDate(5, Date.valueOf(date));
+			
+
+			preparedStmt.execute();
+
+			connection.close();
+
+			output = "Inserted successfully";
+
+		} catch (Exception e) {
+
+			output = "Error while inserting the Appointments.";
+
+			System.err.println(e.getMessage());
+
+		}
+
+		return output;
+
+	}
+
 	public String getAvailableDocs() {
 
 		String output = "";
@@ -22,32 +71,34 @@ public class Appointment {
 				return "Error while connecting to the database";
 			}
 
-			output = "<table class=\"table\" >" + "<thead>" + "<th>Doctor Name</th>" + "<th>Availability</th>"
+			output = "<table class=\"table\" >" + "<thead>" + "<ID>" + "<th>Doctor Name</th>" + "<th>Doctor Specialization</th>" + "<th>Availability</th>"
 					+ "</thead>";
 
-			String query = "select D_Name from doctor  where Availability = '1'";
+			String query = "select * from doctor  where Availability = '1'";
 
 			// Not set yet String query = "Select D_Name from doctor"; Statement
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(query);
 
 			while (resultSet.next()) {
-				//String docId = resultSet.getString("Doctor_ID");
+				String docId = Integer.toString(resultSet.getInt("Doctor_ID"));
 				String docName = resultSet.getString("D_Name");
-				//String docSpec = resultSet.getString("D_Type");
-				//String docHosp = resultSet.getString("Hospital_ID");
-				//String availability = resultSet.getString("Availability");
+				String docSpec = resultSet.getString("D_Type");
+				String docHosp = resultSet.getString("Hospital_ID");
+				String availability = resultSet.getString("Availability");
 
 				// Add into the html table
 
 				output += "<tbody><tr><td><input id=\"hidDocIdUpdate\"name=\"hidDocIdUpdate\"type=\"hidden\" value=\""
-						+ docName + "\">" + docName + "</td>";
+						+ docId + "\">" + docId + "</td>";
+				output += "<td>" + docName + "</td>";
+				output += "<td>" + docSpec + "</td>";
 
 				// buttons
 
 				output += "<td><form method=\"post\" action=\"appointments.jsp\">"
 						+ "<input class=\"btn btn-success\" name = \"availabilityBtn\" type=\"submit\" value=\"Available\"></from>"
-						+ "</td></tr></tbody>" + "<input name>";
+						+ "</td></tr></tbody>";
 
 			}
 
@@ -76,7 +127,7 @@ public class Appointment {
 
 			output = "<table class=\"table\" border=\"1\">" + "<thead>" + "<tr><th>Appointment Id</th>"
 					+ "<th>User Id</th>" + "<th>Doctor Id</th>" + "<th>Doctor Specialisation</th>"
-					+ "<th>Hospital Id</th>" + "</th></tr>" + "</thead>";
+					+ "<th>Hospital Id</th>" +"<th>Date</th>" +"</th></tr>" + "</thead>";
 
 			// Not set yet
 			String query = "Select * from appointments";
@@ -108,7 +159,7 @@ public class Appointment {
 
 				// buttons
 
-				output += "<td><input name=\"btnUpdate\" type=\"button\"value=\"Update\" class=\"btn btn-warning btnUpdate\"></td>"
+				output += "<td><input name=\"btnUpdate\" type=\"button\"value=\"Update\" class=\"btnUpdate btn btn-warning \"></td>"
 
 						+ "<td><form method=\"post\" action=\"appointments.jsp\">"
 
@@ -129,55 +180,6 @@ public class Appointment {
 
 			System.err.println(e.getMessage());
 		}
-		return output;
-
-	}
-
-	public String setAppointment(String userId, String docId, String hospId, String docSpec, String date) {
-		String output = "";
-
-		try {
-
-			Connection connection = connect.connect();
-
-			if (connection == null) {
-
-				return "Error while connecting to the database for inserting.";
-
-			}
-
-			// create a prepared statement
-
-			String query = " insert into appointments(`User_Id`,`Doctor_Id`,`Doctor_spec`,`Hosp_Id`,`Date`)"
-
-					+ " values (?, ?, ?, ?)";
-
-			PreparedStatement preparedStmt = connection.prepareStatement(query);
-
-			preparedStmt.setInt(1, Integer.parseInt(userId));
-
-			preparedStmt.setInt(2, Integer.parseInt(docId));
-
-			preparedStmt.setInt(3, Integer.parseInt(hospId));
-
-			preparedStmt.setString(4, docSpec);
-
-			preparedStmt.setDate(5, Date.valueOf(date));
-
-			preparedStmt.execute();
-
-			connection.close();
-
-			output = "Inserted successfully";
-
-		} catch (Exception e) {
-
-			output = "Error while inserting the Appointments.";
-
-			System.err.println(e.getMessage());
-
-		}
-
 		return output;
 
 	}

@@ -1,5 +1,7 @@
 package com.service;
 
+import java.sql.Date;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -25,7 +27,7 @@ public class AppointmentService {
 
 	
 	@GET
-	@Path("/avilableDocs")
+	@Path("/docs")
 	@Produces(MediaType.TEXT_HTML)
 	public String getDocs() {
 		return appointment.getAvailableDocs();
