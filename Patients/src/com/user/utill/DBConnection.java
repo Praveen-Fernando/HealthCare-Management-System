@@ -14,7 +14,7 @@ public class DBConnection {
 //	            return conn;
 //	        }
 
-	        String database = "paf_db";
+	        String database = "paf_project";
 	        String Username = "root";
 	        String password = "";
 	        return getConnection(database, Username, password);

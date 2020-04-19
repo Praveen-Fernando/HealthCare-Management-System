@@ -48,17 +48,18 @@ UserController usercontroller = new UserController();
 			@FormParam("userAge") String userAge,
 			@FormParam("userEmail") String userEmail) throws ParseException {
 
-		User use = new User();
-		use.setFirstName(firstName);
-		use.setLastName(lastName);
-		use.setUserAddress(userAddress);
-		use.setContactNumber(Integer.parseInt(contactNumber));
-		use.setUserDOB(Date.valueOf(userDOB));
-		use.setUserAge(Integer.parseInt(userAge));
-		use.setUserEmail(userEmail);
+		User user = new User();
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setUserAddress(userAddress);
+		user.setContactNumber(Integer.parseInt(contactNumber));
+		user.setUserDOB(Date.valueOf(userDOB));
+		user.setUserAge(Integer.parseInt(userAge));
+		user.setUserEmail(userEmail);
 		
-		return usercontroller.AddUser(use);
+		return usercontroller.AddUser(user);
 	}
+	
 	
 	@DELETE
 	@Path("/{id}")
