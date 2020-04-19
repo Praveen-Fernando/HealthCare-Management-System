@@ -8,11 +8,11 @@
 	<servlet>
 		<servlet-name>Jersey Web Application</servlet-name>
 		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
-	
-	<!--<init-param>
-			<param-name>com.sun.jersey.config.property.packages</param-name>
-			<param-value>com.service</param-value>
-		</init-param>  -->
+
+	<!--<init-param> 
+			<param-name>com.sun.jersey.config.property.packages</param-name> 
+			<param-value>com.service</param-value> 
+		</init-param> -->
 		
 		<!-- Change your param value into your service package -->
 		<load-on-startup>1</load-on-startup>

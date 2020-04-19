@@ -23,12 +23,11 @@ public class Appointment {
 
 				return "Error while connecting to the database for inserting.";
 
-			} 
+			}
 			// create a prepared statement
 
-			String query = "insert into appointments(`User_Id`,`Doctor_Id`,`Doctor_spec`,`Hosp_Id`)"
-
-					+ "values (?, ?, ?, ?)";
+			String query = "insert into appointments(User_Id, Doctor_Id, Doctor_spec, Hosp_Id, Date)"
+					+ " values (?, ?, ?, ?, ?)";
 
 			PreparedStatement preparedStmt = connection.prepareStatement(query);
 			preparedStmt.setInt(1, 0);
@@ -42,7 +41,6 @@ public class Appointment {
 			preparedStmt.setInt(5, Integer.parseInt(hospId));
 
 			preparedStmt.setDate(6, Date.valueOf(date));
-			
 
 			preparedStmt.execute();
 
@@ -72,8 +70,8 @@ public class Appointment {
 				return "Error while connecting to the database";
 			}
 
-			output = "<table class=\"table\" >" + "<thead>" + "<ID>" + "<th>Doctor Name</th>" + "<th>Doctor Specialization</th>" + "<th>Availability</th>"
-					+ "</thead>";
+			output = "<table class=\"table\" >" + "<thead>" + "<ID>" + "<th>Doctor Name</th>"
+					+ "<th>Doctor Specialization</th>" + "<th>Availability</th>" + "</thead>";
 
 			String query = "select * from doctor  where Availability = '1'";
 
@@ -126,9 +124,9 @@ public class Appointment {
 				return "Error while connecting to the database";
 			}
 
-			output = "<table class=\"table\" border=\"1\">" + "<thead>" + "<tr>"
-					+ "<th>User Id</th>" + "<th>Doctor Id</th>" + "<th>Doctor Specialisation</th>"
-					+ "<th>Hospital Id</th>" +"<th>Date</th>" +"</th></tr>" + "</thead>";
+			output = "<table class=\"table\" border=\"1\">" + "<thead>" + "<tr>" + "<th>User Id</th>"
+					+ "<th>Doctor Id</th>" + "<th>Doctor Specialisation</th>" + "<th>Hospital Id</th>" + "<th>Date</th>"
+					+ "</th></tr>" + "</thead>";
 
 			// Not set yet
 			String query = "Select * from appointments";
@@ -147,7 +145,7 @@ public class Appointment {
 				output += "<tbody><tr><td><input id=\"hidReadAppoIdUpdate\"name=\"hidReadAppoIdUpdate\"type=\"hidden\" value=\""
 
 						+ appoId + "\">" + userId + "</td>";
-				
+
 				output += "<td>" + docId + "</td>";
 
 				output += "<td>" + docSpec + "</td>";
@@ -183,7 +181,8 @@ public class Appointment {
 
 	}
 
-	public String updateAppointment(String appoId,String userId, String docId, String hospId, String docSpec, String date) {
+	public String updateAppointment(String appoId, String userId, String docId, String hospId, String docSpec,
+			String date) {
 		String output = "";
 
 		try {
@@ -215,8 +214,8 @@ public class Appointment {
 			preparedStmt.setString(4, docSpec);
 
 			preparedStmt.setDate(5, Date.valueOf(date));
-			
-			preparedStmt.setInt(6, Integer.parseInt(appoId)); 
+
+			preparedStmt.setInt(6, Integer.parseInt(appoId));
 
 			preparedStmt.execute();
 

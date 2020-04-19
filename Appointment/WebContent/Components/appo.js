@@ -14,8 +14,9 @@ $(document).on("click", "#bookingBtn", function(event) {
 	$("#alertError").text("");
 	$("#alertError").hide();
 
-	var status = validateAppForm();
-	if (systus != true) {
+	var status = validateAppoForm();
+	
+	if (status != true) {
 		$("alertError").text(status);
 		$("alertError").show();
 		return;
@@ -45,7 +46,7 @@ $(document).on(
 
 		});
 
-function validateAppForm() {
+function validateAppoForm() {
 
 	// CODE
 
