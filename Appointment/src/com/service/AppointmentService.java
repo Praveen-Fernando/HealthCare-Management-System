@@ -84,6 +84,8 @@ public class AppointmentService {
 
 		JsonObject jsonObject = new JsonParser().parse(dData).getAsJsonObject();
 
+		String appoId = jsonObject.get("appoId").getAsString();
+		
 		String userId = jsonObject.get("userId").getAsString();
 
 		String docId = jsonObject.get("docId").getAsString();
@@ -94,7 +96,7 @@ public class AppointmentService {
 
 		String date = jsonObject.get("date").getAsString();
 
-		String output = appointment.updateAppointment(userId, docId, hospId, docSpec, date);
+		String output = appointment.updateAppointment(appoId,userId, docId, hospId, docSpec, date);
 
 		return output;
 

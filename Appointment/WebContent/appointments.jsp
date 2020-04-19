@@ -35,6 +35,8 @@ System.out.println("Trying to proocess....");
 		{
 
 			stsMsg = appointment.updateAppointment(
+					request.getParameter("hidAppoIdSave"),
+					
 					request.getParameter("userId"), 
 					
 					request.getParameter("docId"), request
@@ -122,9 +124,9 @@ System.out.println("Trying to proocess....");
 					class="form-control" id="docId" required="required">
 			</div>
 			<div class="form-group">
-				<label for="docSpec">Doctor Specialization</label> 
-				<input type="text"
-					class="form-control" id="docSpec" name="docSpec" required="required">
+				<label for="docSpec">Doctor Specialization</label> <input
+					type="text" class="form-control" id="docSpec" name="docSpec"
+					required="required">
 				<!-- <select
 					class="form-control" id="docSpec" required="required">
 
@@ -133,7 +135,7 @@ System.out.println("Trying to proocess....");
 					<option value="<%//resultSet.getString(1);%>"></option>
 					<%//} %>
 				</select> -->
-				
+
 			</div>
 			<div class="form-group">
 				<label for="hospId">Hospital ID</label> <input type="number"

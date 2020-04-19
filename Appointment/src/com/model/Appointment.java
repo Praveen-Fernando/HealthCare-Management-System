@@ -31,16 +31,17 @@ public class Appointment {
 					+ "values (?, ?, ?, ?)";
 
 			PreparedStatement preparedStmt = connection.prepareStatement(query);
+			preparedStmt.setInt(1, 0);
 
-			preparedStmt.setInt(1, Integer.parseInt(userId));
+			preparedStmt.setInt(2, Integer.parseInt(userId));
 
-			preparedStmt.setInt(2, Integer.parseInt(docId));
+			preparedStmt.setInt(3, Integer.parseInt(docId));
 
-			preparedStmt.setString(3, docSpec);
+			preparedStmt.setString(4, docSpec);
 
-			preparedStmt.setInt(4, Integer.parseInt(hospId));
+			preparedStmt.setInt(5, Integer.parseInt(hospId));
 
-			preparedStmt.setDate(5, Date.valueOf(date));
+			preparedStmt.setDate(6, Date.valueOf(date));
 			
 
 			preparedStmt.execute();
@@ -125,7 +126,7 @@ public class Appointment {
 				return "Error while connecting to the database";
 			}
 
-			output = "<table class=\"table\" border=\"1\">" + "<thead>" + "<tr><th>Appointment Id</th>"
+			output = "<table class=\"table\" border=\"1\">" + "<thead>" + "<tr>"
 					+ "<th>User Id</th>" + "<th>Doctor Id</th>" + "<th>Doctor Specialisation</th>"
 					+ "<th>Hospital Id</th>" +"<th>Date</th>" +"</th></tr>" + "</thead>";
 
@@ -145,10 +146,8 @@ public class Appointment {
 				// Add into the html table
 				output += "<tbody><tr><td><input id=\"hidReadAppoIdUpdate\"name=\"hidReadAppoIdUpdate\"type=\"hidden\" value=\""
 
-						+ appoId + "\">" + appoId + "</td>";
-
-				output += "<td>" + userId + "</td>";
-
+						+ appoId + "\">" + userId + "</td>";
+				
 				output += "<td>" + docId + "</td>";
 
 				output += "<td>" + docSpec + "</td>";
@@ -184,7 +183,7 @@ public class Appointment {
 
 	}
 
-	public String updateAppointment(String userId, String docId, String hospId, String docSpec, String date) {
+	public String updateAppointment(String appoId,String userId, String docId, String hospId, String docSpec, String date) {
 		String output = "";
 
 		try {
@@ -216,6 +215,8 @@ public class Appointment {
 			preparedStmt.setString(4, docSpec);
 
 			preparedStmt.setDate(5, Date.valueOf(date));
+			
+			preparedStmt.setInt(6, Integer.parseInt(appoId)); 
 
 			preparedStmt.execute();
 
