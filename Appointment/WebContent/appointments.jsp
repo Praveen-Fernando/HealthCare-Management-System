@@ -8,15 +8,13 @@
 
 		Appointment appointment = new Appointment();
 
-		String
-
-		stsMsg = "";
+		String stsMsg = "";
 
 		
 
 		//Insert--------------------------
 
-		if (request.getParameter("readAppoIdUpdate") == "") {
+		if (request.getParameter("hidAppoIdSave") == "") {
 
 			stsMsg = appointment.setAppointment(request.getParameter("userId"),
 
@@ -117,7 +115,7 @@
 			</div>
 			<button class="btn btn-primary" name="bookingBtn" id="bookingBtn">Book
 				Now</button>
-				<input type="hidden" id="hidAppoId" name="hidAppoId" value="">
+				<input type="hidden" id="hidAppoIdSave" name="hidAppoIdSave" value="">
 		</form>
 	</div>
 	

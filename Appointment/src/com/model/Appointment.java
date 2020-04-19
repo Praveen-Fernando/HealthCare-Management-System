@@ -32,16 +32,16 @@ public class Appointment {
 			ResultSet resultSet = statement.executeQuery(query);
 
 			while (resultSet.next()) {
-				String docId = resultSet.getString("Doctor_ID");
+				//String docId = resultSet.getString("Doctor_ID");
 				String docName = resultSet.getString("D_Name");
-				String docSpec = resultSet.getString("D_Type");
-				String docHosp = resultSet.getString("Hospital_ID");
-				String availability = resultSet.getString("Availability");
+				//String docSpec = resultSet.getString("D_Type");
+				//String docHosp = resultSet.getString("Hospital_ID");
+				//String availability = resultSet.getString("Availability");
 
 				// Add into the html table
 
 				output += "<tbody><tr><td><input id=\"hidDocIdUpdate\"name=\"hidDocIdUpdate\"type=\"hidden\" value=\""
-						+ docId + "\">" + docName + "</td>";
+						+ docName + "\">" + docName + "</td>";
 
 				// buttons
 
@@ -92,7 +92,7 @@ public class Appointment {
 				String date = resultSet.getString("Date");
 
 				// Add into the html table
-				output += "<tbody><tr><td><input id=\"readAppoIdUpdate\"name=\"readAppoIdUpdate\"type=\"hidden\" value=\""
+				output += "<tbody><tr><td><input id=\"hidReadAppoIdUpdate\"name=\"hidReadAppoIdUpdate\"type=\"hidden\" value=\""
 
 						+ appoId + "\">" + appoId + "</td>";
 
@@ -108,7 +108,7 @@ public class Appointment {
 
 				// buttons
 
-				output += "<td><input name=\"btnUpdate\" type=\"submit\"value=\"Update\" class=\"btn btn-warning btnUpdate\"></td>"
+				output += "<td><input name=\"btnUpdate\" type=\"button\"value=\"Update\" class=\"btn btn-warning btnUpdate\"></td>"
 
 						+ "<td><form method=\"post\" action=\"appointments.jsp\">"
 
