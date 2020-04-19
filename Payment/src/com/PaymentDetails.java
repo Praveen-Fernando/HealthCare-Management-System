@@ -3,7 +3,7 @@ package com;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
-public class PaymentDetils {
+public class PaymentDetails {
 	
 	private int payid;
 	private String paytype;

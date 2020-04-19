@@ -20,9 +20,9 @@ import util.connection;
 
 public class PaymentResource {
 	
-	public ArrayList<PaymentDetils> getAllPayment() throws SQLException
+	public ArrayList<PaymentDetails> getAllPayment() throws SQLException
 	{
-		ArrayList<PaymentDetils> list = new ArrayList();
+		ArrayList<PaymentDetails> list = new ArrayList();
 		String qry = "SELECT * FROM payment";
 		connection conn = new connection();
 		ResultSet rs = conn.getRs(qry);
@@ -30,7 +30,7 @@ public class PaymentResource {
 			
 			while(rs.next())
 			{
-				PaymentDetils p = new PaymentDetils();
+				PaymentDetails p = new PaymentDetails();
 				p.setPayid(rs.getInt(1));
 				p.setPaytype(rs.getString(2));
 				p.setAmount(rs.getDouble(3));
@@ -45,13 +45,13 @@ public class PaymentResource {
 			
 	}
 
-	public PaymentDetils getPaymentDetails(int id) throws SQLException
+	public PaymentDetails getPaymentDetails(int id) throws SQLException
 	{
 		String qry = "SELECT * FROM `payment`WHERE Payid = "+id+"";
 		connection conn = new connection();
 		ResultSet resultsets = conn.getRs(qry);
 		DateFormat dateFormat = new SimpleDateFormat("dd-M-yyyy hh:mm:ss"); 
-		PaymentDetils pd = new PaymentDetils();
+		PaymentDetails pd = new PaymentDetails();
 		
 		while(resultsets.next())
 		{
@@ -68,7 +68,7 @@ public class PaymentResource {
 		return pd;
 	}
 	
-	public String insertPaymentDetails(PaymentDetils pd) throws SQLException
+	public String insertPaymentDetails(PaymentDetails pd) throws SQLException
 	{
 		connection conn = new connection();
 		String sql = "INSERT INTO `payment`(`paytype`, `amount`) VALUES (?,?)";
@@ -111,7 +111,7 @@ public class PaymentResource {
 		}
 	}
 	
-	public String updatePaymentDeails(PaymentDetils pd)throws SQLException
+	public String updatePaymentDeails(PaymentDetails pd)throws SQLException
 	{
 		connection conn = new connection();
 		String sql = "UPDATE `payment` SET `paytype`=?,`amount`=?  WHERE `id`=";
